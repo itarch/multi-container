@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+  - docker build -t itarch/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true itarch/react-test npm test
+  
+after_success:
+  - docker build -t itarch/multi-client ./client
+  - docker build -t itarch/multi-nginx ./nginx
+  - docker build -t itarch/multi-server ./server
+  - docker build -t itarch/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to Docker Hub
+  - docker push itarch/multi-client
+  - docker push itarch/multi-nginx
+  - docker push itarch/multi-server
+  - docker push itarch/multi-worker  
