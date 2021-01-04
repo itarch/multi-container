@@ -14,7 +14,7 @@ after_success:
   - docker build -t itarch/multi-server ./server
   - docker build -t itarch/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to Docker Hub
   - docker push itarch/multi-client
   - docker push itarch/multi-nginx
