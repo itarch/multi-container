@@ -27,7 +27,7 @@
       "image": "itarch/multi-nginx",
       "hostname": "nginx",
       "essential": true,
-      "portMappigngs": [
+      "portMappings": [
         {
           "hostPort": 80,
           "containerPort": 80
