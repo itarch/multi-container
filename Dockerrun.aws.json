@@ -5,7 +5,6 @@
       "name": "client",
       "image": "itarch/multi-client",
       "hostname": "client",
-# essential = false, no matter if it crash
       "essential": false,
       "memory": 128
     },
